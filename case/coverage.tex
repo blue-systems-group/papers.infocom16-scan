@@ -1,0 +1,179 @@
+\subsection{Coverage}
+\label{subsec:coverage}
+
+To begin, we examine the coverage achieved by our dataset. The
+139~\PhoneLab{} participants who contributed measurements to our experiment
+represent only 0.4\% of the \num{29096} students, faculty, and staff that the
+\num{2913}~UB APs are deployed to serve. The smaller the number of
+smartphones that can achieve acceptable coverage, the easier the task of
+recruiting enough users to adequately monitor the network. However, coverage
+means different things depending on the monitoring goals. So below we examine
+two different types of coverage: spatiotemporal and periodic AP coverage.
+
+\subsubsection{Spatiotemporal coverage}
+\label{subsubsec:coverage}
+
+A useful definition of coverage to a network administrator may encompass how
+many APs are observed and how often these APs are seen. We define
+\textit{spatiotemporal coverage} as the percentage of all UB APs observed by
+participating devices over some time interval. We obtained a list of
+\num{2645} active APs from UB network administrators on April 29, 2014. This
+list, however, fluctuates over time as APs are added, removed, or replaced.
+In fact, our dataset contains \num{2913} UB APs, \num{476} more than the
+canonical list provided by UB IT. In the following analysis we ignore these
+``ghost'' APs. As a result, the overall spatiotemporal coverage achieved over
+the entire five month dataset was $(2913-476)/2645=92\%$.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{./figures/DeviceDayCoverageGraph.pdf}
+  \caption{\textbf{Daily and Cumulative Spatiotemporal Coverage.} Mondays on
+  the graph are labeled. Coverage shows weekly fluctuations.}
+  \label{fig:daily_coverage}
+\end{figure*}
+
+Figure~\ref{fig:daily_coverage} shows the daily and cumulative spatiotemporal
+coverage achieved during our experiment. Daily coverage exhibits regular
+weekly fluctuations, reflecting the fact that \PhoneLab{} participants are
+more likely to be on campus during the week than over the weekend---75\% of
+experiment participants are faculty and staff, and because UB has a large
+percentage of commuter students even students may not be on campus during the
+weekend. Cumulative coverage rises quickly in early December, when many new
+participants joined the experiment, and then slowly afterward.
+
+We also notice overall reductions in daily coverage during winter
+(12/17/2013--1/27/2014) and spring (3/15/2014--3/23/2014) breaks, more so
+during winter break when students, faculty, and staff were likely to all be
+away from campus. The small increase in the week after spring break may
+reflect the fact that many classes held midterm exams during that week.
+However, during weekdays when classes were in session we saw roughly 50\% of
+all UB APs daily, a remarkable result given the small number of
+participants\footnote{Daily coverage is lower until the beginning of December
+due to large number of participants that joined the experiment around that
+time. See Figure~\ref{fig:daily}.}.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.48\textwidth]{./figures/DeviceSpatialCoverageGraph.pdf}
+  \caption{\textbf{Spatiotemporal Coverage v. Number of Devices}}
+  \label{fig:device_coverage}
+\end{figure}
+
+Next we look at the relationship between spatiotemporal coverage and the
+number of participating devices. We were interested to find out if a small
+number of participants were responsible for most of the coverage and also
+thought that this relationship might help understand how coverage would
+change if we were able to recruit more participants. We isolate the week
+beginning 2/10/2014 when 86~devices contributed scan results. For $1 \le n
+\le 86$, we randomly choose $n$ devices and compute the resulting
+spatiotemporal coverage over that week. We repeat the calculation 100 times
+for each $n$ and use the average, making our calculations reflect a
+representative subset of the devices, not the best subset.
+Figure~\ref{fig:device_coverage} shows the resulting relationship, and shows
+that a subset of 15~devices can achieve about half of the coverage of the
+86~device set.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.48\textwidth]{./figures/APTemporalCoverageGraph.pdf}
+  \caption{\textbf{CDF of AP Temporal Coverage.} Experiment durations is 152
+  days in total.}
+  \label{fig:temporal_coverage}
+\end{figure}
+
+Finally, Figure~\ref{fig:temporal_coverage} looks at temporal coverage alone
+defined as the percentage of experiment days that each AP was seen.
+Approximately 40\% of the campus APs were seen on at least half of the days.
+
+\subsubsection{Periodic coverage}
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[t]{\columnwidth}
+  \includegraphics[width=\textwidth]{./figures/APPeriodicDayCoverageGraph.pdf}
+  \vspace*{-0.3in}
+  \caption{All time intervals and APs.}
+  \label{fig:periodic:all}
+  \end{subfigure}\\
+  \begin{subfigure}[t]{\columnwidth}
+  \includegraphics[width=\textwidth]{./figures/APPeriodicHourCoverageGraph.pdf}
+  \vspace*{-0.3in}
+  \caption{Filtered time intervals and APs.}
+  \vspace*{0.05in}
+  \label{fig:periodic:filtered}
+  \end{subfigure}
+  \caption{\textbf{Periodic Coverage.} Periodic coverage of
+  (\subref{fig:periodic:all}) all APs during all time intervals is poor, but
+  (\subref{fig:periodic:filtered}) periodic coverage of commonly-used APs
+  over commonly-used times is better.}
+  \vspace*{-0.1in}
+\end{figure}
+
+Network administrators may also be interested in the rate at which a
+smartphone monitoring network can perform repeated measurements of all or
+some fraction of network APs. We define \textit{periodic coverage}
+parameterized by an interval length $T$ as the percent of APs that are seen
+at least once in every interval of length $T$ over a given time period. A
+looser definition might consider it acceptable to miss APs in some small
+percentage of intervals, but we use the most rigorous definition of periodic
+coverage in our analysis.
+
+Figure~\ref{fig:periodic:all} shows that our network achieves poor periodic
+coverage, even after excluding the first month of the study when few
+participants had joined the experiment: only 20\% of APs were seen even as
+rarely as once a week during the experiment. This is due to gaps in coverage
+caused by times when participants leave campus: at night, on the weekend, and
+during breaks.
+
+However, these also coincide with periods of time when the campus \wifi{}
+network is not heavily used and when network monitoring may be less
+important. In addition, as we will show later in
+Section~\ref{subsubsec:usage}, a small subset of 479~APs (18\%) support 95\%
+of the total \wifi{} association time for our 139~participants, making them
+both more important to monitor than the rest of the APs and more suitable to
+monitor with this set of participants. Figure~\ref{fig:periodic:filtered}
+shows the periodic coverage achieved for the 479~heavily-used APs only during
+campus working hours (10AM--6PM) on days when classes are in session. With
+130~devices, around 30\% of the heavily-used APs can be seen at least once
+every day, and around 70\% can be seen every week.
+Figure~\ref{fig:periodic:filtered} also shows the relationship between
+periodic coverage and the number of devices calculated identically as in
+\ref{subsubsec:coverage}.
+
+% 15 Jul 2014 : GWA : Elided for now. Doesn't really fit this section and we
+% need some space.
+%
+% \subsubsection{Interactive coverage}
+% 
+% \begin{figure*}[t]
+%   \centering
+%   \includegraphics[width=0.96\textwidth]{./figures/DeviceInteractiveScanGraph.pdf}
+%   \caption{\textbf{Per device scan type distribution when $M = 5$.} Where $M$ is
+%   margin length in minutes.}
+%   \label{fig:interactive}
+% \end{figure*}
+% 
+% \wifi{} condition when user is interactively using the device has an important
+% influence on the user's network experience. However, scan frequently in a
+% interactive session may hurt the device's network performance. Thus, an
+% preferable option would be using the scans \textit{near} (a short time before or
+% after) interactive sessions to approximate the \wifi{} conditions during
+% interactive session. Since our data collection is passive, we're interested to
+% see whether the scans performed by Android can effectively capture the \wifi{}
+% conditions of interactive sessions.  
+% 
+% We divide each scan into three categories depend on the time of scan and the
+% screen status.
+% \begin{itemize}
+%   \item Interactive scan: if scan is performed when screen is on;
+%   \item Marginal scan: if scan is performed $M$ minutes before screen is on or
+%     $M$ minutes after screen is off;
+%   \item Background scan: all other scans.
+% \end{itemize}
+% 
+% We further match each marginal scan with the closest recognized activity within
+% 30 seconds. Intuitively, if user remain still after a interactive session, then
+% those marginal scans can more actually capture the \wifi{} condition during that
+% session. Figure~\ref{fig:interactive} shows the per device percentage of each
+% type of scans. In total, around half the scans are performed inside or near a
+% interactive session.

@@ -1,0 +1,122 @@
+\section{Practical Issues}
+\label{sec:discussion}
+
+In this section, we discuss several practical issues.
+
+\begin{table*}[t!]
+  \centering
+  \begin{tabular}{cccccccc}
+    \input{./figures/privacy.tex}
+  \end{tabular}
+  \caption{\textbf{Summary of Data Required for Each Case Study.} $\times$: Not
+  required. $\Diamond$: Optional. $\surd$: Required.}
+  \label{tab:privacy}
+\end{table*}
+
+\subsection{Privacy}
+\label{subsec:privacy}
+
+One particular concern that arises when sharing the channel scan data is
+privacy. To address this, we first point out the type of user data that
+infrastructure can already collect. Then we discuss the minimum types of channel
+scan data required for each case studies. The discussion also serves as our data
+anonymization process for releasing the dataset.
+
+In enterprise network environments, since all user devices have to be
+authenticated to associate to the APs, the \wifi{} session information, including
+user identity, device MAC address and association time, are all recorded by the
+management software. Therefore, a complete view of the user's \wifi{} connection
+activity are already available at the infrastructure side. Although in the case
+studies, we only use such data for ground truth or validation purposes. Even
+when user's device is not connected to any APs, the infrastructure can still
+learn the presence of the device by sniffing probe packets\footnote{iOS 8
+introduce MAC randomization feature in probe packets to preserve user's location
+privacy.}.
+
+Next we discuss the minimum types of scan data required to perform each of the
+case studies in previous sections. Results are summarized in
+Table~\ref{tab:privacy}. First, for all case studies, device identification
+information is not utilized in any ways, thus can be stripped off even before
+scan results data are uploaded. Second, timestamp information is not needed either, as
+long as the multiple scan result entries can be correctly grouped together and
+be identified as from one single scan. In
+practice, however, certain coarse grained time information, such year and month, can be
+kept for post processing convenience. Third, since the channel scan are mainly
+used to help monitor central managed networks with predetermined SSIDs, such
+information is not required from the scan results. Furthermore, user can choose
+only to upload channel scan data when it contains a predefined set of SSIDs, to
+avoid revealing information such as home AP SSID. Forth, signal strength
+information is necessary in analyzing and prediction the device's association
+behavior in spatial planning case study, yet is optional in other two studies.
+Additionally, this information can be replaced by an ordering of the APs by signal
+strength, eliminating the need for absolute RSSI values. Next, channel
+information is not required, since infrastructure has the complete view
+of the channel assignments of all APs at any instant. Finally, \wifi{}
+connection information is only useful in identifying the association choice from
+the scan results in the spatial planning case study. If such information can be
+annotated in the scan results before data uploading, \wifi{} connection
+information is not required either. For example, device can identify the scans
+happened just before a \wifi{} connection event, and mark the corresponding
+BSSID as chosen AP in the scan result.
+
+To summarize, only the BSSID information is necessary for the infrastructure to
+identify the access points. Other potentially sensitive information can either
+be stripped off (e.g., device id, timestamp, channel), or properly anonymized
+(e.g., RSSI).
+
+\subsection{Incentive}
+\label{subsec:incentive}
+
+We next discuss incentives for user to participate data collection. First, as we
+showed earlier in Section~\ref{sec:scan}, smartphones already perform \wifi{}
+scans aggressively, thus the natural scan rate already provides a stream of
+network measurements with sufficient temporal granularity for monitoring
+purpose. By only passively harvesting the scan results, little performance
+overhead is incurred in the process. And further steps can be taken to reduce
+the energy consumption (e.g., only upload data when charging) and possibility
+metered cellular data usage (e.g., only upload through \wifi{} networks).
+Additionally, user privacy can be maintained using the anonymization techniques
+we discussed in Section~\ref{subsec:privacy}.
+
+Then we look into incentives that encourage user for sharing the data. Note that
+in enterprise networks, such data collection consent can be incorporated as part
+of the authentication process. For instance, users may be required to install
+the data collection app when connecting to enterprise network, and the
+installation can then allow the user's other device to connect to the network.
+For public \wifi{} service providers such as Boingo~\cite{boingo}, extra Quality
+of Service (QoS) or plan discount can be offered to incentivize participation in
+data collection.
+
+In conclusion, the measurement overhead can be significantly reduced by passive
+data collection and asynchronous delay tolerant data uploading. And effective
+incentive mechanisms can be developed to further encourage measurement
+participation.
+
+\subsection{Device Heterogeneity}
+\label{subsec:heterogeneity}
+
+In the \ubscan{} dataset that is mostly analyzed throughout this paper, all scan
+results are collected from devices with the same model (Nexus 5). We now reflect
+on whether this hardware homogeneity is necessary, and what the impact of device
+heterogeneity would be on each of the case studies.
+
+\wifi{} chipsets and drivers from various manufacturers may have different
+polices on the rate of scanning. Yet as we shown earlier in
+Section~\ref{sec:scan}, most wireless devices from different vendors all perform
+\wifi{} scans quite aggressively.  Therefore, the device heterogeneity shall
+have negligible impact on the temporal resolution of the measurements.
+
+On other hand, \wifi{} chipsets do have various RF characteristics, such as
+carrier sensing range or antenna sensitivity. For instance, when building
+client-perceived conflict graph (\S\ref{subsec:channel}), a more sensitive
+device may reveal more conflict edges than those less sensitive ones. And
+similarity, devices with different sensitivity levels may disagree on the
+offending set of same RAP (\S\ref{subsec:rogue}).
+
+To tolerate such device diversities, the measurement processing logic can either
+be aggressive by adopting the superset of observations from different devices, or
+be conservative and only consider common conflicts reported by most of the
+devices. Additionally, note that relative ordering of the APs by signal strength
+is usually consistent for each device, therefore the device heterogeneity has
+minimal impact on the spatial planning case study, where only the relative
+ordering of the APs instead of the absolute RSSI values is utilized.

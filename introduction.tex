@@ -1,0 +1,110 @@
+\section{Introduction}
+\label{sec-introduction}
+
+As mobile wireless devices proliferate and the demands they place on wireless
+networks continue to grow, monitoring the health and performance of large
+scale wireless networks is both essential and increasingly challenging. While
+site surveys and infrastructure-side data collection both play important
+roles in network monitoring, neither of these approaches can fully and
+continuously reflect actual network conditions experienced by the clients the
+network is intended to serve---particularly the mobile devices that generate
+most wireless traffic. Site surveys are snapshots that are neither
+representative spatially nor temporally, and AP-side data collection can only
+measure wireless conditions at AP fixed locations, not at the changing
+locations of mobile clients. As a result, multiple previous research studies
+have demonstrated the value of client-side measurements to improve network
+performance~\cite{mishra2005weighted,mishra2006client}, and the 2008~802.11k
+amendment~\cite{80211k} provides a mechanism allowing APs to collect this
+information from clients to improve radio resource management.
+
+Given the established interest in and emerging support for client-side
+wireless network measurement, it is surprising that today we are discarding a
+potentially-valuable source of client-side information: the large number of
+channel scans performed continuously by mobile devices such as smartphones.
+These devices naturally perform frequent channel scans to cope with
+rapidly-fluctuating network environments caused by mobility. For example,
+Android smartphones scan every 15~s when unassociated to locate access points
+(APs) to connect to, and even when associated continue to scan every 60~s to
+identify better APs and handoff connections as conditions change due to
+client mobility, network interference, or other factors.
+
+Considered as network measurements, channel scans have all of the typical
+benefits of client-side measurements---such as capturing the real conditions
+experienced by end users, providing data that is impossible to gather using
+APs alone, and being simpler and more representative than site surveys. In
+addition, they have several other unique benefits. First, note that clients
+perform these measurements in order to effectively use wireless networks, not
+to measure them. As a result, the measurements themselves are free and the
+client overhead required to use them for monitoring purposes is limited to
+the costs of temporary storage (which is minimal) and telemetry (which can be
+minimized through delay tolerant and energy neutral data collection). Second,
+in many cases channel scans remain useful even after being stripped of
+information such as timestamps or device identifiers that could threaten
+client privacy and potentially limit the willingness of users to share this
+information.
+
+All \wifi{} clients perform channel scans, but smartphones have several
+advantages that make them uniquely suited to collecting and providing
+measurements for enterprise networking monitoring. First, unlike laptops,
+smartphones are always on and so scan continuously both during and between
+periods of interactive use, providing better temporal resolution than devices
+that are regularly powered down. Second, being highly portable, users are
+likely to carry smartphones with them most of the time, giving these devices
+the ability to observe more of the network than would be seen by stationary
+or less-portable devices and making their measurements more representative of
+all locations where mobile users might utilize the wireless network. Finally,
+smartphone platforms already provide interfaces allowing apps (with
+appropriate permissions) to access channel scans, and app marketplaces
+provide an easy way to deploy the simple monitoring software required to
+recover them to billions of mobile devices. Compared to other mobile devices,
+smartphones make it (1) easy to collect (2) an enormous number of channel
+scans from (3) everywhere that users might use multiple wireless networks.
+
+\textbf{But is this data actually useful?} Can it contribute valuable
+insights that would be impossible to gain from existing sophisticated
+infrastructure-based approaches? That is the question that we set out to
+answer in this paper. Our goal is to determine whether the billions of
+discarded smartphone channel scans represent a missed opportunity or
+redundant information that we can continue to safely ignore.
+
+\sloppypar{To do so, we take a walk on the client side. We utilize two large
+channel scan datasets collected by the \PhoneLab{} (\num{5373682}~scans,
+254~devices, 5~months) and \NetSense{} (\num{32564809}~scans, 125~devices,
+32~months) smartphone testbeds, described in more detail in
+Section~\ref{sec:dataset}. To examine the case for client-side measurement,
+we ignore analyses that could be performed using data from APs, including APs
+that utilize extra radio hardware to allow them to continuously perform
+AP-side measurements without disrupting normal client traffic. We also focus
+our studies on aspects of network performance and behavior of interest to
+network operators, not just scientists, since we anticipate that large-scale
+collection of channel scans will only take place if the data provides
+meaningful operational insights.}
+
+Our paper presents three case studies in Section~\ref{sec:case} using one or
+both of our channel scan datasets:
+%
+\begin{itemize}
+%
+\item \textbf{Section~\ref{subsec:channel}} looks at how the channel conflict
+graph differs from the client perspective, helping operators assess the
+effectiveness of infrastructure-only channel assignment algorithms at
+utilizing available spectrum.
+%
+\item \textbf{Section~\ref{subsec:spatial}} examines how load shifts or is
+dropped if a particular AP is unavailable or stops accepting connections, allowing operators to estimate the impact of
+planned maintenance, identify areas providing little redundancy, and consider
+reconfiguring or moving APs.
+%
+\item \textbf{Section~\ref{subsec:rogue}} measures the impact of so-called
+``rogue APs``, APs present within the area served by the enterprise network
+but not under the control of network administrators,
+allowing operators to prioritize the the process of addressing rogue APs by
+identifying those that are actually causing deleterious interference.
+%
+\end{itemize}
+
+Section~\ref{sec:related} discusses related work before we present and
+discuss our conclusions in Section~\ref{sec:conclusion}. We believe that our
+case studies demonstrate the value of smartphone channel scans, and will
+publish also datasets so that others can extend our analyses or reevaluate
+our conclusion.

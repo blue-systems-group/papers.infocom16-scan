@@ -1,0 +1,40 @@
+%\pdfobjcompresslevel=1
+% \documentclass{sig-alternate-10pt}
+\documentclass[10pt, conference, letterpaper]{IEEEtran}
+\usepackage{times,datetime,url,hyperref,graphicx,multirow,color,calc,ulem,threeparttable,tabularx,booktabs,enumitem,comment,balance,subcaption,morefloats,mathrsfs}
+\usepackage[group-separator={,}]{siunitx}
+\usepackage[font=small]{caption}
+
+\hypersetup{%
+  bookmarks=true,
+  unicode=true,
+  pdftoolbar=true,
+  pdfmenubar=true,
+  pdffitwindow=true,
+  pdfstartview={FitV},
+  pdfnewwindow=true,
+  colorlinks=false,
+  pdfdisplaydoctitle=true,
+  pdfborder={0 0 0}
+}
+\usepackage[all]{hypcap}
+
+\usepackage[absolute]{textpos}
+\setlength{\TPHorizModule}{1in}
+\setlength{\TPVertModule}{1in}
+\textblockorigin{0.75in}{0.875in}
+
+\setlist[itemize]{leftmargin=*,partopsep=5pt}
+\setlist[enumerate]{leftmargin=*,partopsep=5pt}
+
+%\newcommand*{\refname}{References}
+\paperheight 11in
+\paperwidth 8.5in
+
+\usepackage{dcolumn}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+
+\input{.xxxnote}
+\input{.draft}
+\input{.blue}
+\input{common.tex}

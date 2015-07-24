@@ -1,0 +1,161 @@
+\section{Conclusions and Discussion}
+\label{sec:conclusion}
+
+At this point we return to the question posed at the beginning of this paper:
+\textbf{Are smartphone channel scans useful?} We believe that the answer is
+\textbf{yes.} Through three extensive case studies, we have demonstrate that
+smartphone measurements can contribute unique insights about large scale
+wireless network deployments which are difficult or impossible to glean from
+site surveys, statically deployed sniffers or infrastructure side logs. Quite
+simply, smartphones represent real network users, and their data is
+representative in the way that these other sources of measurements cannot be.
+
+\begin{comment}
+To conclude, we address several practical issues in collecting smartphone
+scan data: (1) Will smartphone scan data compromise user privacy? (2) What
+are the incentives for user to contribute data? and (3) Does device
+heterogeneity affect the usefulness of the measurements? 
+
+\begin{table*}[t!]
+  \centering
+  \begin{tabular}{cccccccc}
+    \input{./figures/privacy.tex}
+  \end{tabular}
+  \caption{\textbf{Summary of Data Required for Each Case Study.} $\times$: Not
+  required. %$\Diamond$: Optional. $\surd$: Required.}
+}
+  \label{tab:privacy}
+  \vspace*{\aftercaptiongap}
+\end{table*}
+
+\subsection{Privacy}
+\label{subsec:privacy}
+
+One particular concern that arises when sharing channel scan data is privacy.
+To address this, we first point out the types of user data that the
+infrastructure side can already collect. Then we discuss the minimum
+requirements in terms of channel scan data for each case study. The
+discussion also serves as guidelines to our data anonymization process for
+releasing the UB-Scan and ND-Scan datasets.
+
+In enterprise network environments, since all user devices have to be
+authenticated to associate to the APs, the \wifi{} session information,
+including user's identity, device MAC address and association time, is
+recorded by the management software. Therefore, a complete view of the user's
+\wifi{} connection activity is already available on the infrastructure side.
+Even when the user's device is not connected to any AP, the infrastructure
+may still be able to detect the presence of the device by sniffing probe
+packets\footnote{iOS 8 introduces a MAC randomization feature in probe
+packets to preserve user's location privacy.}. Against this backdrop,
+providing channel scan information does not represent an additional loss of
+privacy compared to what infrastructure networks can already monitor about
+their users.
+
+Next we discuss the minimum requirements in terms of scan data for each of the
+case studies in the previous sections. These requirements are summarized in
+Table~\ref{tab:privacy}.
+
+\begin{enumerate}
+    %
+  \item For all case studies, device identification information is not
+    utilized in any way; thus, it can be stripped off even before scan
+    results data are uploaded.
+%
+\item Timestamp information is not needed either, as long as the multiple
+  scan result entries can be correctly grouped together and be identified as
+  from one single scan. In practice, however, coarse grained time information
+  such as year and month can be kept for post processing convenience.
+%
+\item Since the channel scan data are mainly used to help monitor central
+  managed networks with predetermined SSIDs, such information is not required
+  from the scan results. Furthermore, the user can choose only to upload
+  channel scan data when they contain a predefined set of SSIDs, to avoid
+  revealing information such as home AP SSID. 
+%
+\item Signal strength information is necessary in analyzing and predicting
+  the device's association behavior in the spatial planning case study, yet
+  is optional in the other two studies. Additionally, this information can be
+  replaced by an ordering of the APs by signal strength, eliminating the need
+  for absolute RSSI values.
+%
+\item Channel information is not required, since the infrastructure has the
+  complete knowledge of the channel assignments for all APs at any instant.
+%
+\item \wifi{} connection information is only useful in identifying the
+  association choice from the scan results in the spatial planning case
+  study. If such information can be annotated in the scan results before data
+  uploading, \wifi{} connection information is not required either. For
+  example, the device can identify the scans happened just before a \wifi{}
+  connection event, and mark the corresponding BSSID as chosen AP in the scan
+  result.
+%
+\end{enumerate}
+
+To summarize, only the BSSID information is necessary for the infrastructure to
+identify the APs. Other potentially sensitive information can either removed
+or anonymized.
+
+\subsection{Incentives}
+\label{subsec:incentive}
+
+We next discuss incentives for user to participate in data collection. First, as
+we showed earlier in Section~\ref{sec:scan}, smartphones already perform \wifi{}
+scans aggressively, thus the natural scan rate already provides a stream of
+network measurements with sufficient temporal granularity for monitoring
+purposes. By only passively harvesting the scan results, the overhead incurred
+in the process is kept low. And further steps can be taken to reduce the energy
+consumption (e.g., only upload data when charging) and possibly metered cellular
+data usage (e.g., only upload through \wifi{} networks).  Additionally, user
+privacy can be maintained using the anonymization techniques we discussed in
+Section~\ref{subsec:privacy}.
+
+Then we look into incentives that encourage users to share the data. Note that
+in enterprise networks, such data collection consent can be incorporated as part
+of the authentication process. For instance, users may be required to install
+the data collection app when connecting to the enterprise network, and the
+installation can then allow the user's other devices to connect to the network.
+For public \wifi{} service providers such as Boingo~\cite{boingo}, extra Quality
+of Service (QoS) or price discounts can be offered to incentivize
+participation.
+
+In summary, the measurement overhead can be significantly reduced by passive
+data collection and asynchronous delay tolerant data uploading, and effective
+incentive mechanisms can encourage measurement participation.
+
+\subsection{Device Heterogeneity}
+\label{subsec:heterogeneity}
+
+In the \ubscan{} dataset that is mostly analyzed throughout this paper, all scan
+results are collected from devices of the same model (Nexus 5). We now reflect
+on whether this hardware homogeneity is necessary, and what the impact of device
+heterogeneity would be on each of the case studies.
+
+\wifi{} chipsets and drivers from various manufacturers may have different
+policies on the scanning rate. Yet, as we showed earlier in
+Section~\ref{sec:scan}, most wireless devices from different vendors perform
+\wifi{} scans quite aggressively. Therefore, the device heterogeneity shall
+have negligible impact on the temporal resolution of the measurements.
+
+On other hand, \wifi{} chipsets do have various RF characteristics, such as
+carrier sensing range or antenna sensitivity. For instance, when building
+client-perceived conflict graph (\S\ref{subsec:channel}), a more sensitive
+device may reveal more conflict edges than a less sensitive one. And
+similarly, devices with different sensitivity levels may disagree on the
+offending set of the same RAP (\S\ref{subsec:rogue}).
+
+To tolerate such diversity, the measurement post-processing logic can either
+be aggressive by adopting the superset of observations from different
+devices, or be conservative and only consider common conflicts reported by
+most devices. Additionally, note that relative ordering of the APs by
+signal strength is usually consistent for each device, therefore the device
+heterogeneity has minimal impact on the spatial planning case study, where
+only the relative ordering of the APs instead of the absolute RSSI values is
+utilized.
+
+\subsection{Measurement App}
+
+Inspired by our results, we are developing a lightweight scan collection app
+and set of analysis tools that we will make available on the Google Play
+store and to network operators interested in using scans to better
+understand their enterprise \wifi{} networks.
+\end{comment}
