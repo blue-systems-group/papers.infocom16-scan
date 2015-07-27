@@ -1,4 +1,4 @@
-\section{Related Work}
+\section{Related Works}
 \label{sec:related}
 
 Monitoring \wifi{} networks has received a lot of attention over the past
@@ -10,92 +10,44 @@ al.~\cite{yeo:wise2004,yeo:witmemo2005} introduced the idea of passive
 monitoring using a small number of wireless sniffers. They demonstrated the
 feasibility of this approach using synthetic experiments in an isolated
 wireless network and discussed the challenges and potential applications. The
-same approach of deploying a small number of sniffers was used in a number of
-follow-up works. Jardosh et al. analyze traffic captured by three sniffers at
-a large IETF meeting trying to understand link-layer
-behavior~\cite{jardosh:wind2005}, and congestion~\cite{jardosh:imc2005} in
-802.11b \wifi{} networks. The studies
-in~\cite{rodrig:ewind2005,mahajan:sigcomm2006} analyze various performance
-characteristics of \wifi{} networks using a trace captured by five sniffers
-at a large conference venue. WiserAnalyzer~\cite{chhetri:msn2009} introduces
-a set of inference algorithms to determine the relation among wireless nodes
-(e.g., non-contending, hidden terminals, carrier sensing) and detect
-malicious usage or compliance to the IEEE 802.11 standard.
+same approach was used in a number of
+follow-up works~\cite{jardosh:wind2005,jardosh:imc2005}.
 
-The next step was the deployment of large-scale passive wireless
-monitoring systems consisting of tens or hundreds of sniffers.
-Jigsaw~\cite{cheng:sigcomm2006} was the first deployed large-scale
-passive monitoring system. The system consists of a 192 sniffers which
-report all wireless events across location, channel, and time to a
-back-end server. The server uses a set of algorithms and inference
-techniques to merge and synchronize the traces from different sniffers
-into one unified trace which is then used to isolate and identify the
-root cause of various performance artifacts, such as data transfer
-delays~\cite{cheng:sigcomm2007}.  MAP~\cite{sheng:wicom2008} was a
-security-focused wireless monitoring system.  To enable online
-detection of security violations, MAP introduced a number of
-optimizations such as frame feature extraction, channel sampling, and
-refocusing. The successor of MAP, DIST~\cite{tan:tmc2014} currently
-uses 210 sniffers deployed across 11 building at Dartmouth. An
-alternative method to dense sniffer deployment is wardriving, often
-coupled with calibrated signal propagation models, in order to reduce
-the measurement locations. As an example, these two techniques are
-used in~\cite{zhou:sigmetrics2013} to construct practical conflict graphs.
+The next step was the deployment of large-scale passive wireless monitoring
+systems. Jigsaw~\cite{cheng:sigcomm2006} was the first deployed large-scale
+monitoring system. 192 sniffers were deployed to report all wireless events
+across location, channel, and time to a back-end server. The server uses a set
+of algorithms and inference techniques to merge and synchronize the traces from
+different sniffers into one unified trace which is then used to isolate and
+identify the root cause of various performance artifacts, such as data transfer
+delays~\cite{cheng:sigcomm2007}.  MAP~\cite{sheng:wicom2008} and its successor,
+DIST~\cite{tan:tmc2014}, were security-focused wireless monitoring systems.
+Finally, as an alternative to dense sniffer depolyment, wardriving was used
+in~\cite{zhou:sigmetrics2013} to construct practical conflict graphs.
 
 The drawback of these systems is the high cost and effort associated with the
 dense deployment of static wireless sniffers in order to achieve good
 coverage. A few works tried to mitigate the cost by exploiting existing
-infrastructure instead of deploying additional hardware.
+infrastructure.
 DAIR~\cite{bahl:mobisys2006,chan:nsdi2006} uses wireless USB dongles attached
-to employee desktop machines in an enterprise WLAN instead of deploying
-sniffers and uses the collected traces for a number of applications including
-rogue AP detection, rogue ad-hoc network detection, helping disconnected
+to employee desktop machines instead of deploying
+sniffers and uses the collected traces for several applications including
+rogue AP detection, helping disconnected
 clients, and network performance monitoring. However, DAIR nodes are still
 static and suffer from some of the disadvantages of previous solutions.
-Different from all previous works, WiFiProfiler~\cite{chandra:mobisys2006} is
-a system in which wireless hosts cooperate to diagnose and possibly resolve
-network problems in an automated manner, without any infrastructural support,
-by communicating with each other in a peer-to-peer fashion. WiFiProfiler
-installs custom software on the client to collect detailed network statistics
-and exchange data with peers.
 
-\if 0
-The closest work to ours is Pazl~\cite{radu:cnsm2013}, a mobile crowdsensing
-based indoor \wifi{} monitoring system using measurements from a number of
-participant smartphones. The design of Pazl shares many of our ideas with
-respect to the advantages of a smartphone-based monitoring system over the
-previously developed systems using a collection of statically deployed
-sniffers and the site-surveys used in today's WLANs. However, the focus is on
-developing an indoor localization system used to localize the measurements
-from different smartphones and only evaluates in a small-scale experiment
-with five participants. In contrast, our project focuses on \wifi{}
-monitoring using a much larger dataset.
-\fi
-
-The idea of using smartphones for wireless networks and/or wireless
-spectrum monitoring has been exploited in a few recent
-works~\cite{radu:cnsm2013,nychis:hotwireless2014,nika:hotwireless2014,zhang:hotmobile2015}. Pazl~\cite{radu:cnsm2013}
-is a mobile crowdsensing based indoor \wifi{} monitoring system using
-measurements from a number of participant smartphones. However, the
-focus of the work is on developing an indoor localization system used
-to localize the measurements from different smartphones. Further, the
-system is only evaluated in a small-scale experiment with five
-participants. The work in~\cite{nychis:hotwireless2014} uses
-smartphones to detect and map heterogeneous networks and devices in
-home networks. The system includes a training phase during which the
-smartphone learns the wireless devices/networks at home, their
-locations, their mobility status, and their signal strength
-levels. Then, during the monitoring phase, the phone periodically
-performs measurements and uses them to detect new devices, determine
-the impact of one device to another, and learn spatial/temporal
-dynamics. Finally, the works
+The idea of using smartphones to monitor wireless networks and/or spectrum has
+been exploited in a few recent
+works~\cite{nychis:hotwireless2014,nika:hotwireless2014,zhang:hotmobile2015}.
+The work in~\cite{nychis:hotwireless2014} uses smartphones to detect and map
+heterogeneous networks and devices in home networks. The smartphones
+periodically performs measurements and uses them to detect new devices,
+determine the impact of one device to another, etc. Finally, the works
 in~\cite{nika:hotwireless2014,zhang:hotmobile2015} develop two
-crowdsourcing-based RF spectrum monitoring systems using
-smartphones. The smartphone is connected to an external device which
-performs spectrum measurements---a software defined radio
-in~\cite{nika:hotwireless2014} and an OpenWrt router hosting a Atheros
-9280 card along with a frequency translator
-in~\cite{zhang:hotmobile2015}.
+crowdsourcing-based RF spectrum monitoring systems using smartphones. The
+smartphone is augmented with external hardwares to performs spectrum
+measurements---a software defined radio in~\cite{nika:hotwireless2014} and a
+frequency translator in~\cite{zhang:hotmobile2015}.
 
 All these works share many of our ideas with respect to the advantages
 of a smartphone-based monitoring system over the previously developed
@@ -105,4 +57,4 @@ instrument the smartphones or integrate them with external hardware to
 collect specific types of measurements. In contrast, in this paper, we
 try to answer the question of whether the billions of \wifi{} channel
 scan results collected for free by smartphones can assist in wireless
-network monitoring. configuration, or troubleshooting.
+network monitoring, configuration, or troubleshooting.

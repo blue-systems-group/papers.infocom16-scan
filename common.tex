@@ -1,11 +1,22 @@
 % 16 Nov 2010 : GWA : Any special macros or other stuff for this particular
 %               paper go here.
+\newcommand{\wifi}{Wifi}
+\hyphenation{Phone-Lab}
 
+\ifdefined\isdoubleblind
+\newcommand{\ub}{U1}
+\newcommand{\nd}{U2}
+\newcommand{\PhoneLab}{\textsc{Testbed1}}
+\newcommand{\NetSense}{\textsc{Testbed2}}
+\else
+\newcommand{\ub}{UB}
+\newcommand{\nd}{ND}
 \newcommand{\PhoneLab}{\textsc{PhoneLab}}
 \newcommand{\NetSense}{\textsc{NetSense}}
-\hyphenation{Phone-Lab}
-\newcommand{\wifi}{Wifi}
-\newcommand{\ubscan}{UB-Scan}
-\newcommand{\ndscan}{ND-Scan}
-\newcommand{\ubap}{UB-AP}
-\newcommand{\ubapdetail}{UB-AP-Scans}
+\fi
+
+\newcommand{\ubscan}{\ub{}-Scan}
+\newcommand{\ndscan}{\nd{}-Scan}
+\newcommand{\ubap}{\ub{}-AP}
+\newcommand{\ubapdetail}{\ub{}-AP-Scans}
+

@@ -2,7 +2,7 @@
 \label{subsec:spatial}
 
 In enterprise wireless deployments, APs are usually scattered evenly across a building
-to achieve good coverage, as in the case of Davis Hall shown in
+to achieve good coverage, as in the case of our department building shown in
 Figure~\ref{fig:floor}. However, there typically are certain public areas within
 the building, such as lounges and conference rooms, where users tend to use the
 wireless network more than other areas.
@@ -19,20 +19,19 @@ observations. First, as expected, the load of APs near public areas, such as AP
 3, 5, 4 and 12, are much higher than others. Second, interestingly, certain APs
 near public areas, such as AP 7, are not as heavily loaded as other nearby APs.
 Moreover, loads are not evenly distributed among APs that are near the same
-public area, such as AP 3 and 5. Finally, we notice that the three load metrics may
-produce inconsistent AP load ranks: some APs may serve fewer \wifi{} sessions
-while still providing longer connection time or more traffic. In the following discussion, we
-use session count as the load metric, since the other two can be biased by
-factors such as applications or user behaviors.
+public area, such as AP 3 and 5. Finally, we notice that the three load metrics
+may produce inconsistent AP load ranks: some APs may serve fewer \wifi{}
+sessions while still providing longer connection time or more traffic. In the
+following discussion, we use session count as the load metric, since the other
+two can be biased by factors such as applications or user behaviors.
 
-From infrastructure logs, network operators can easily identify the hot
-spot APs that are more heavily loaded than their neighbors. Two actions can then
-be taken to deal with such load unbalance: \textit{redirection} and
-\textit{reposition}. With \textit{redirection} approach, underutilized APs are
-left as is, so that when nearby hot spot APs are congested, clients can be
-redirected to them for load balancing. On the other hand, the underutilized APs can
-be \textit{repositioned} to better locations to improve their
-utilization.
+From infrastructure logs, network operators can easily identify the hot spot APs
+that are more heavily loaded than their neighbors. Two actions can then be taken
+to deal with such load unbalance: \textit{redirection} and \textit{reposition}.
+With \textit{redirection}, underutilized APs are left as is, so that
+when nearby hot spot APs are congested, clients can be redirected to them for
+load balancing. On the other hand, the underutilized APs can be
+\textit{repositioned} to better locations to improve their utilization.
 
 With only infrastructure measurements, however, it is not clear which approach
 should be taken for each of the underutilized APs. Furthermore, in both
@@ -57,25 +56,24 @@ impact of AP repositioning.
 
 \begin{figure*}
   \centering
-  \begin{subfigure}[b]{0.3\textwidth}
-    \includegraphics[width=\columnwidth]{./figures/DavisLoadBalanceGraph.pdf}
+  \begin{minipage}[t]{0.31\textwidth}
+    \includegraphics[width=\textwidth]{./figures/DavisLoadBalanceGraph.pdf}
     \caption{\textbf{Load Balance Graph.} Nodes are shaded based on 
       relative load. Edge width corresponds to $\langle device, timestamp \rangle$
     count in our dataset.}
     \label{fig:davis_load_balance}
-  \end{subfigure}%
-  \begin{subfigure}[b]{0.3\textwidth}
-    \includegraphics[width=\columnwidth]{./figures/DavisLoadRedistributionGraph.pdf}
+  \end{minipage}\hspace{0.02\textwidth}%
+  \begin{minipage}[t]{0.31\textwidth}
+    \includegraphics[width=\textwidth]{./figures/DavisLoadRedistributionGraph.pdf}
     \caption{\textbf{Load Redistribution Graph.} Edge width corresponds to the
     number of \wifi{} sessions shifted from the originating node.}
     \label{fig:davis_load_redist}
-  \end{subfigure}%
-  \begin{subfigure}[b]{0.3\textwidth}
-    \includegraphics[width=\columnwidth]{./figures/CampusAPRedundancyFigure.pdf}
+  \end{minipage}\hspace{0.02\textwidth}%
+  \begin{minipage}[t]{0.31\textwidth}
+    \includegraphics[width=\textwidth]{./figures/CampusAPRedundancyFigure.pdf}
     \caption{\textbf{CDF of Campus AP Redundancy.}}
     \label{fig:ap_redundancy}
-  \end{subfigure}
-
+  \end{minipage}
   \vspace*{\aftercaptiongap}
 \end{figure*}
 
@@ -88,17 +86,17 @@ problem. Therefore, the associated AP may not provide the best signal throughout
 the entire \wifi{} session.
 
 From load balancing perspective, it is useful to identify the subset of an AP's
-neighbors which can potentially provide better signals to the AP's clients, such
+neighbors which can potentially provide better signal to the AP's clients, such
 that when the AP is overloaded, its clients can be redirected without
 compromising their signal quality. With smartphone measurements, we can capture
 such relationships using an \textit{empirical load balancing graph} $G_L = (V,
 E_L)$, where $V$ is the set of APs, and $\langle AP_i \rightarrow AP_j \rangle
 \in E_L$ if a client associated with $AP_i$ reports a better signal from $AP_j$
 than $AP_i$. We also assign a weight to each edge to quantify how many times
-such relationship is observed.
+such relationship is observed in the dataset.
 
 Figure~\ref{fig:davis_load_balance} shows the $G_L$ constructed for the 14 APs
-in Davis Hall 3rd floor. Such a graph is useful in two ways. First, it
+in the 3rd floor of our department building. Such a graph is useful in two ways. First, it
 identifies backup APs for each hot spot AP for load balancing purposes. For
 example, a large portion of AP 5 and 11's load can be shifted to AP 2 and 9
 respectively without degrading client perceived signal quality. Second, it helps
@@ -107,9 +105,9 @@ with large weight, such as $\langle 5 \rightarrow 2 \rangle$, $\langle 4
 \rightarrow 0 \rangle$ and $\langle 11 \rightarrow 9 \rangle$, indicate that
 those underutilized APs (2, 0 and 9) are better kept for load balancing
 purposes. On the other hand, APs such as 7, 10 and 13 seldom provide better
-signals than nearby hot spot APs, thus should be considered as reposition
+signal than nearby hot spot APs, thus should be considered as reposition
 candidates. However, even some of these candidate APs can not provide good
-signals for load offloading purposes, they may exclusively serve certain users,
+signal for load offloading purposes, they may exclusively serve certain users,
 thus removing them will probably create coverage holes. We further look into
 this in next section.
 
@@ -146,7 +144,7 @@ Figure~\ref{fig:davis_load_redist} shows the load redistribution graph for the
 14 APs. Among the underutilized APs, AP 7 has medium 
 incoming weights, indicating it is capable to provide backup connections
 in case of neighbor AP failures. On other hand, AP 10 and 13 have very small incoming
-weights, suggesting they may not be able to provide good signals for clients
+weights, suggesting they may not be able to provide good signal for clients
 that need to be redirected when neighbor APs fail. Additionally, there is no loop edges for
 AP 10 and 13, meaning all the \wifi{} sessions they serve can be safely shifted to
 nearby neighbor APs when they are removed. Therefore, AP 10 and 13 can be
@@ -154,10 +152,6 @@ repositioned to better places to increase their utilization. However, we must
 note that the above conclusion is biased by the \wifi{} sessions of \PhoneLab{}
 participants, thus may not be representative of all campus AP users. Further
 investigations need to be conducted to reach a final decision.
-
-\begin{figure}[t]
-  \vspace*{\aftercaptiongap}
-\end{figure}
 
 We also observe from Figure~\ref{fig:davis_load_redist} that, for those heavily
 loaded APs (e.g., AP 4 and 5), most of their loads can be shifted to nearby APs,
@@ -180,7 +174,7 @@ statistically meaningful, we only calculate the redundancy of APs whose total
 outgoing weight is larger than a certain threshold (100). In total, we found
 396 such APs from \ubscan{} dataset and 426 APs from \ndscan{} dataset.
 Figure~\ref{fig:ap_redundancy} shows the CDF of these APs' redundancy. The
-median redundancy is as high as 0.95 for UB and 0.9 ND due to the dense AP
+median redundancy is as high as 0.95 for \ub{} and 0.9 for \nd{} due to the dense AP
 deployment within campus. We do notice, however, that about 5\% of the APs in
 each campus are lower than 0.5. Such APs shall raise the attention of network
 operators and may require further investigation for better spatial planning.
@@ -200,6 +194,6 @@ In addition, similar to the conflict graph discussed in
 Section~\ref{subsec:channel}, the load balancing graph could potentially be built
 in real time fusion. For instance, the congested AP could trigger a \textit{Frame
 Report} on its clients and eagerly disassociate a client if it received better
-signals from another campus AP. However, such real time coordination may further
+signal from another campus AP. However, such real time coordination may further
 add burden to the congested APs, thus a empirical graph built offline can still
 be useful.

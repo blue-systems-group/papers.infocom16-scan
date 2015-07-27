@@ -2,7 +2,7 @@ export PYTEX=$(shell pwd)/pytex/
 
 START = noxxxnote nodraft noblue
 END = missing
-CLASS = ./sig-alternate-10pt.cls
+CLASS = ./IEEEtran.cls
 
 all: wc paper ABSTRACT
 

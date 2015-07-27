@@ -1,14 +1,15 @@
-\input{./include/start.tex}
 
 \def\theconference{InfoCom'16}
 \def\thetitle{A Walk on the Client Side: Studying Enterprise Wifi Networks
 Using Smartphone Channel Scans}
 \def\theauthors{Jinghao Shi, Lei Meng, Aaron Striegel, Chunming Qiao, Dimitrios
 Koutsonikolas, and Geoffrey Challen}
-\def\thepapernumber{9}
 \def\aftercaptiongap{0mm}
+\def\isdoubleblind{}
 % \def\isdraft{}
 % \def\isblue{}
+
+\input{./include/start.tex}
 
 \ifdefined\isdraft
   \usepackage{fancyhdr}
@@ -52,7 +53,7 @@ Koutsonikolas, and Geoffrey Challen}
 \input{related.tex}
 \input{conclusion.tex}
 
-{\scriptsize
+{%
   \balance
   \bibliographystyle{abbrv}
   \bibliography{references}
