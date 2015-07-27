@@ -1,23 +1,24 @@
-
-\def\theconference{InfoCom'16}
-\def\thetitle{A Walk on the Client Side: Studying Enterprise Wifi Networks
-Using Smartphone Channel Scans}
-\def\theauthors{Jinghao Shi, Lei Meng, Aaron Striegel, Chunming Qiao, Dimitrios
-Koutsonikolas, and Geoffrey Challen}
-\def\aftercaptiongap{0mm}
 \def\isdoubleblind{}
 % \def\isdraft{}
 % \def\isblue{}
 
+\def\theconference{INFOCOM'16}
+\def\thetitle{A Walk on the Client Side: Studying Enterprise Wifi Networks
+Using Smartphone Channel Scans}
+\def\theauthors{Jinghao Shi, Lei Meng, Aaron Striegel, Chunming Qiao, Dimitrios
+Koutsonikolas, and Geoffrey Challen}
+\def\aftercaptiongap{-3mm}
+
+
 \input{./include/start.tex}
 
 \ifdefined\isdraft
-  \usepackage{fancyhdr}
-  \pagestyle{fancy}
-  \renewcommand{\headrulewidth}{0pt}
-  \lhead{}
-  \chead{Under Submission to \theconference{}. Do not distribute.}
-  \rhead{}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{}
+\chead{Under Submission to \theconference{}. Do not distribute.}
+\rhead{}
 \else
 \fi
 
@@ -30,17 +31,17 @@ Koutsonikolas, and Geoffrey Challen}
 \else
 \fi
 
-\title{\thetitle\vspace*{-0.3in}}
+\title{\thetitle}
 
-\author{%
-}
-
+\ifdefined\isdoubleblind
+\else
 \hypersetup{%
   pdfinfo={%
     Title={\thetitle},
     Author={\theauthors},
   }
 }
+\fi
 
 
 \maketitle
@@ -48,7 +49,6 @@ Koutsonikolas, and Geoffrey Challen}
 \input{abstract.tex}
 \input{introduction.tex}
 \input{dataset.tex}
-% \input{scan.tex}
 \input{case.tex}
 \input{related.tex}
 \input{conclusion.tex}
