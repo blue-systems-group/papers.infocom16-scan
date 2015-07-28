@@ -156,13 +156,11 @@ investigations need to be conducted to reach a final decision.
 We also observe from Figure~\ref{fig:davis_load_redist} that, for those heavily
 loaded APs (e.g., AP 4 and 5), most of their loads can be shifted to nearby APs,
 although certain number of connections will be dropped. To quantify this, we define an
-AP's \textit{redundancy} as follows:
-
+AP's \textit{redundancy} as follows:%
 \begin{equation}
   \mathcal{R}(AP_i) = 1 - \frac{w_{AP_i \rightarrow AP_i}}{\sum_{j|AP_i \rightarrow
     AP_j \in E_R} w_{AP_i \rightarrow AP_j}}
-\end{equation}
-
+\end{equation}%
 where $E_R$ is the edges of redundancy graph, $w_{AP_i \rightarrow AP_j}$ is the
 weight (i.e., number of sessions) of edge $\langle AP_i, AP_j\rangle$ in the
 load redistribution graph, and $w_{AP_i \rightarrow AP_i}$ is the weight of
