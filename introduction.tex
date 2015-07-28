@@ -28,12 +28,12 @@ to search for APs to connect to, and continue to scan every 60~s even when
 associated to identify better APs as conditions change due to client mobility,
 network interference, or other factors.
 
-Considered as network measurements, channel scans have all of the typical
+Considered as network measurements, channel scans share all the typical
 benefits of client-side measurements---such as capturing the real conditions
 experienced by end users, providing data that is impossible to gather using
 APs alone, and being simpler and more representative than site surveys. In
 addition, they have several other unique benefits. First, note that clients
-perform these measurements in order to effectively use wireless networks, not
+perform these channel scans in order to effectively use wireless networks, not
 to measure them. As a result, the measurements themselves are free and the
 client overhead required to use them for monitoring purposes is limited to
 the costs of temporary storage (which is minimal) and telemetry (which can be
@@ -60,25 +60,27 @@ recover them to billions of mobile devices. Compared to other mobile devices,
 smartphones make it (1) easy to collect (2) an enormous number of channel
 scans from (3) everywhere that users might use multiple wireless networks.
 
-\textbf{But is this data actually useful?} Can it contribute valuable
+\textbf{But whether (and how) this data can be made useful?} Can it contribute valuable
 insights that would be impossible to gain from existing sophisticated
 infrastructure-based approaches? That is the question that we set out to
 answer in this paper. Our goal is to determine whether the billions of
 discarded smartphone channel scans represent a missed opportunity or
 redundant information that we can continue to safely ignore.
 
-\sloppypar{To do so, we take a walk on the client side. We utilize two large
-  channel scan datasets collected by two smartphone testbeds (\PhoneLab{}: \num{5373682}~scans,
-254~devices, 5~months; and \NetSense{}: \num{32564809}~scans, 125~devices,
-32~months), described in more detail in
-Section~\ref{sec:dataset}. To examine the case for client-side measurement,
-we ignore analyses that could be performed using data from APs, including APs
-that utilize extra radio hardware to allow them to continuously perform
-AP-side measurements without disrupting normal client traffic. We also focus
-our studies on aspects of network performance and behavior of interest to
-network operators, not just scientists, since we anticipate that large-scale
-collection of channel scans will only take place if the data provides
-meaningful operational insights.}
+\sloppypar{%
+  To do so, we take a walk on the client side. We utilize two large
+  channel scan datasets collected by two smartphone testbeds (\PhoneLab{}:
+  \num{5373682}~scans, 254~devices, 5~months; and \NetSense{}:
+  \num{32564809}~scans, 125~devices, 32~months), described in more detail in
+  Section~\ref{sec:dataset}. To examine the case for client-side measurement, we
+  ignore analyses that could be performed using data from APs, including APs
+  that utilize extra radio hardware to allow them to continuously perform
+  AP-side measurements without disrupting normal client traffic. We also focus
+  our studies on aspects of network performance and behavior of interest to
+  network operators, not just scientists, since we anticipate that large-scale
+  collection of channel scans will only take place if the data provides meaningful
+  operational insights.
+}
 
 Our paper presents two case studies in Section~\ref{sec:case} using one or
 both of our channel scan datasets:
@@ -89,9 +91,9 @@ both of our channel scan datasets:
     effectiveness of infrastructure-only channel assignment algorithms at
     utilizing available spectrum.
 
-  \item \textbf{Section~\ref{subsec:spatial}} examines how load can be
-    shifted to neighbor APs without sacrificing client's signal quality, both for
-    load balancing purposes and to evaluate AP's redundancy, allowing network
+  \item \textbf{Section~\ref{subsec:spatial}} investigates how load can be
+    shifted among neighbor APs when a particular AP is not available, both for
+    load balancing purpose and to evaluate network redundancy, allowing network
     operators to make better spatial planning decisions.
 \end{itemize}
 
