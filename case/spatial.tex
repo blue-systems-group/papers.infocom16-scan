@@ -163,11 +163,11 @@ AP's \textit{redundancy} as follows:
     AP_j \in E_R} w_{AP_i \rightarrow AP_j}}
 \end{equation}
 
-Where $E_R$ is the edges of redundancy graph, $w_{AP_i \rightarrow AP_j}$ is the weight (i.e., number of sessions)
-of edge $\langle AP_i, AP_j\rangle$ in the load redistribution graph, and
-$w_{AP_i \rightarrow AP_i}$ is the weight of $AP_i$'s loop edge. A large
-redundancy means that most of $AP_i$'s connections can be safely shifted to its
-neighbors.
+where $E_R$ is the edges of redundancy graph, $w_{AP_i \rightarrow AP_j}$ is the
+weight (i.e., number of sessions) of edge $\langle AP_i, AP_j\rangle$ in the
+load redistribution graph, and $w_{AP_i \rightarrow AP_i}$ is the weight of
+$AP_i$'s loop edge. A large redundancy means that most of $AP_i$'s connections
+can be safely shifted to its neighbors.
 
 We are now ready to analyze the redundancy of campus APs. To make the analysis
 statistically meaningful, we only calculate the redundancy of APs whose total
@@ -175,8 +175,8 @@ outgoing weight is larger than a certain threshold (100). In total, we found
 396 such APs from \ubscan{} dataset and 426 APs from \ndscan{} dataset.
 Figure~\ref{fig:ap_redundancy} shows the CDF of these APs' redundancy. The
 median redundancy is as high as 0.95 for \ub{} and 0.9 for \nd{} due to the dense AP
-deployment within campus. We do notice, however, that about 5\% of the APs in
-each campus are lower than 0.5. Such APs shall raise the attention of network
+deployment within campus. We do notice, however, that for about 5\% of the APs in
+each campus, the redundancy is lower than 0.5. Such APs shall raise the attention of network
 operators and may require further investigation for better spatial planning.
 
 
@@ -192,8 +192,8 @@ participation in data collection in Section~\ref{subsec:incentive}.
 
 In addition, similar to the conflict graph discussed in
 Section~\ref{subsec:channel}, the load balancing graph could potentially be built
-in real time fusion. For instance, the congested AP could trigger a \textit{Frame
+in real time fashion. For instance, the congested AP could trigger a \textit{Frame
 Report} on its clients and eagerly disassociate a client if it received better
 signal from another campus AP. However, such real time coordination may further
-add burden to the congested APs, thus a empirical graph built offline can still
+add burden to the congested APs, thus an empirical graph built offline can still
 be useful.

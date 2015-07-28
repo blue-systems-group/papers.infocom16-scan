@@ -8,8 +8,8 @@ site surveys and infrastructure-side data collection both play important
 roles in network monitoring, neither of these approaches can fully and
 continuously reflect actual network conditions experienced by the clients the
 network is intended to serve---particularly the mobile devices that generate
-most wireless traffic. Site surveys are snapshots that are neither
-representative spatially nor temporally, and AP-side data collection can only
+most wireless traffic. Site surveys are snapshots that are neither spatially nor
+temporally representative, and AP-side data collection can only
 measure wireless conditions at AP fixed locations, not at the changing
 locations of mobile clients. As a result, multiple previous research studies
 have demonstrated the value of client-side measurements to improve network
@@ -68,9 +68,9 @@ discarded smartphone channel scans represent a missed opportunity or
 redundant information that we can continue to safely ignore.
 
 \sloppypar{To do so, we take a walk on the client side. We utilize two large
-channel scan datasets collected by the \PhoneLab{} (\num{5373682}~scans,
-254~devices, 5~months) and \NetSense{} (\num{32564809}~scans, 125~devices,
-32~months) smartphone testbeds, described in more detail in
+  channel scan datasets collected by two smartphone testbeds (\PhoneLab{}: \num{5373682}~scans,
+254~devices, 5~months; and \NetSense{}: \num{32564809}~scans, 125~devices,
+32~months), described in more detail in
 Section~\ref{sec:dataset}. To examine the case for client-side measurement,
 we ignore analyses that could be performed using data from APs, including APs
 that utilize extra radio hardware to allow them to continuously perform
@@ -80,7 +80,7 @@ network operators, not just scientists, since we anticipate that large-scale
 collection of channel scans will only take place if the data provides
 meaningful operational insights.}
 
-Our paper presents three case studies in Section~\ref{sec:case} using one or
+Our paper presents two case studies in Section~\ref{sec:case} using one or
 both of our channel scan datasets:
 
 \begin{itemize}
@@ -90,7 +90,7 @@ both of our channel scan datasets:
     utilizing available spectrum.
 
   \item \textbf{Section~\ref{subsec:spatial}} examines how load can be
-    shifted to neighbor APs without scarifying client's signal quality, both for
+    shifted to neighbor APs without sacrificing client's signal quality, both for
     load balancing purposes and to evaluate AP's redundancy, allowing network
     operators to make better spatial planning decisions.
 \end{itemize}

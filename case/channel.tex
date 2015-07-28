@@ -27,7 +27,7 @@ is typically modeled as a graph coloring problem on conflict graph $G=(V, E)$,
 where $V$ is the set of APs, and $\langle AP_i, AP_j \rangle \in E$ if $AP_i$
 and $AP_j$ interfere with each other when they are in the same channel. Previous
 works~\cite{mishra2005weighted,mishra2006client} have shown that conflict graph
-constructed with only AP side measurement fails to capture all type of interferences
+constructed with only AP side measurement fails to capture all types of interference
 due to the hidden terminal problems. For instance, suppose
 $AP_i$ and $AP_j$ are beyond each other's communication range, with only AP's
 measurements, $\langle AP_i, AP_j \rangle \notin E$. However, a client that is
@@ -41,7 +41,7 @@ client-perceived conflicts.
 \subsubsection{Client-Assisted Conflict Graph Construction}
 \label{subsec:client_conflict}
 
-Conflict graph can be constructed with only infrastructure side measurements:
+The conflict graph can be constructed with only infrastructure side measurements:
 each AP performs \wifi{} scan, and inserts an edge between itself and
 each of its neighbors. We refer to a graph constructed in this manner as
 \textit{infrastructure-perceived} conflict graph, or $G_I=(V, E_I)$, where $V$
@@ -53,7 +53,7 @@ aforementioned in Section~\ref{subsec:cit}, we are only able to construct $G_I$
 for the 14 APs in our department building, as shown in Figure~\ref{fig:floor}.
 With \ubapdetail{} dataset, for each $AP_i$, we add $\langle AP_j, AP_i \rangle$
 to $E_I$ if $AP_j$ shows up in $AP_i$'s scan results. Note that in \ubapdetail{}
-dataset, we did not find any asymmetry AP pairs, effectively making $G_I$ undirected.
+dataset, we did not find any asymmetric AP pairs, effectively making $G_I$ undirected.
 
 However, from the \wifi{} client's perspective, any AP (other than its currently
 associated AP) within its carrier sensing range has potential conflict with
@@ -89,7 +89,7 @@ We then take a closer look at each node's degree in both conflict graphs.
 Results are shown in Figure~\ref{fig:conflict_degree}. The median node degree in
 $G_I$ is 7, which is not surprising given the dense AP deployment in this floor.
 In $G_C$, the min degree is 10 and the median degree is 13. In reality, however,
-not all the conflict edges exist all the time: while $G_I$ are stable, $G_C$
+not all the conflict edges exist all the time: while $G_I$ is stable, $G_C$
 may vary over time due to client mobility or association behavior. Therefore,
 such temporal fluctuations of $G_C$ must be captured to effectively assign
 channels without wasting temporal channel reuse opportunities.
@@ -196,7 +196,7 @@ conflicts of \textit{AP-OPT} and \textit{CLIENT-OPT} scheme.
 Figure~\ref{fig:window} shows the results for $W=2, 5 \text{ and } 10$
 respectively. As expected, both coloring schemes incur more conflicts than
 single hour case, since there are more edges in the graph to be colored.
-However, \textit{CLIENT-OPT} can still achieve much less conflicts than
+However, \textit{CLIENT-OPT} can still achieve much fewer conflicts than
 \textit{AP-OPT}.
 
 \subsubsection{Campus Network Conflict Graph}
