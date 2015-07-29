@@ -1,10 +1,12 @@
-%\pdfobjcompresslevel=1
-% \documentclass{sig-alternate-10pt}
 \documentclass[10pt, conference, letterpaper]{IEEEtran}
-\usepackage{times,datetime,url,hyperref,graphicx,multirow,color,calc,ulem,threeparttable,tabularx,booktabs,enumitem,comment,balance,subcaption,morefloats,mathrsfs}
+\usepackage{times,datetime,graphicx,multirow,color,calc,ulem,threeparttable,tabularx,booktabs,enumitem,comment,balance,subcaption,morefloats,mathrsfs}
 \usepackage[group-separator={,}]{siunitx}
 \usepackage[font=small]{caption}
 
+\ifdefined\disableurl
+\else
+\usepackage{url}
+\usepackage{hyperref}
 \hypersetup{%
   bookmarks=true,
   unicode=true,
@@ -18,6 +20,7 @@
   pdfborder={0 0 0}
 }
 \usepackage[all]{hypcap}
+\fi
 
 \usepackage[absolute]{textpos}
 \setlength{\TPHorizModule}{1in}
