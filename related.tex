@@ -14,13 +14,13 @@ same approach was used in a number of
 follow-up works~\cite{jardosh:imc2005, jardosh:wind2005}.
 
 The next step was the deployment of large-scale passive wireless monitoring
-systems. Jigsaw~\cite{cheng:sigcomm2006} was the first deployed large-scale
+systems. Jigsaw~\cite{jigsaw-sigcomm06} was the first deployed large-scale
 monitoring system. 192 sniffers were deployed to report all wireless events
 across location, channel, and time to a back-end server. The server used a set
 of algorithms and inference techniques to merge and synchronize the traces from
 different sniffers into one unified trace which was then used to isolate and
 identify the root cause of various performance artifacts, such as data transfer
-delays~\cite{cheng:sigcomm2007}.  MAP~\cite{sheng:wicom2008} and its successor,
+delays~\cite{jigsaw-sigcomm07}.  MAP~\cite{sheng:wicom2008} and its successor,
 DIST~\cite{tan:tmc2014}, were security-focused wireless monitoring systems.
 Finally, as an alternative to dense sniffer depolyment, wardriving was used
 in~\cite{zhou:sigmetrics2013} to construct practical conflict graphs.
@@ -29,7 +29,7 @@ The drawback of these systems is the high cost and effort associated with the
 dense deployment of static wireless sniffers in order to achieve good
 coverage. A few works tried to mitigate the cost by exploiting existing
 infrastructure.
-DAIR~\cite{bahl:mobisys2006,chan:nsdi2006} uses wireless USB dongles attached
+DAIR~\cite{bahl2006enhancing,chan:nsdi2006} uses wireless USB dongles attached
 to employee desktop machines instead of deploying
 sniffers and uses the collected traces for several applications including
 rogue AP detection, helping disconnected
