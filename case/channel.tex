@@ -4,19 +4,19 @@
 \begin{figure*}[t]
   \centering
   \begin{minipage}[t]{0.31\textwidth}
-      \includegraphics[width=\columnwidth]{./figures/davis_floor_plan.pdf}
-      \caption{\textbf{Floor Plan and AP position.}}
-      \label{fig:floor}
-  \end{minipage}\hspace{0.02\textwidth}%
+    \includegraphics[width=\columnwidth]{./figures/davis_floor_plan.pdf}
+    \caption{\textbf{Floor Plan and AP position.}}
+    \label{fig:floor}
+  \end{minipage}\hspace{0.01\textwidth}%
   \begin{minipage}[t]{0.33\textwidth}
-    \includegraphics[width=\textwidth]{./figures/conflict_graph.pdf}
-    \caption{\textbf{AP and Client Perceived Conflict Graph.}}
-    \label{fig:conflict}
-  \end{minipage}\hspace{0.02\textwidth}%
-  \begin{minipage}[t]{0.31\textwidth}
-    \includegraphics[width=\textwidth]{./figures/DavisConflictDegree.pdf}
-    \caption{\textbf{AP Degree in Conflict Graph.}}
-    \label{fig:conflict_degree}
+    \includegraphics[width=\textwidth]{./figures/DavisConflictGraphSeparate-AP.pdf}
+    \caption{\textbf{Infrastructure-perceived Conflict Graph.}}
+    \label{fig:ap_conflict}
+  \end{minipage}\hspace{0.01\textwidth}%
+  \begin{minipage}[t]{0.33\textwidth}
+    \includegraphics[width=\textwidth]{./figures/DavisConflictGraphSeparate-Client.pdf}
+    \caption{\textbf{Client-perceived Conflict Graph.}}
+    \label{fig:client_conflict}
   \end{minipage}
   \vspace*{\aftercaptiongap}
 \end{figure*}
@@ -73,26 +73,28 @@ of unique $\langle device, timestamp \rangle$%
 from the same device are only counted once towards the edge weight---so the
 weight is not  biased by certain busy devices.} %
 tuples for each conflict edge as its weight, to quantify the impact of
-the conflict: a large weight means the conflict is either experienced by many
-devices, or for a long period of time.
+the conflict: a large weight means the conflict is experienced by many
+devices and/or for a long period of time.
 
 
-Figure~\ref{fig:conflict} shows the constructed conflict graphs, where APs are positioned 
-by their physical coordinates in Fig.~\ref{fig:floor}. First, we
-observe that $G_C$ contains many edges that do not exist in $G_I$, which
-implies that clients experience more conflicts than the infrastructure can
-identify. Second, in this particular AP placement, we notice that $E_I$ is a
-\textit{proper subset} of $E_C$, which means our dataset not only reveals hidden
-conflicts, but also detects all conflicts that the APs already see.
+Figure~\ref{fig:ap_conflict} and Figure~\ref{fig:client_conflict} show the
+constructed infrastructure-perceived and client-perceived conflict graphs
+respectively, where APs are positioned by their physical coordinates in
+Figure~\ref{fig:floor}. First, we observe that $G_C$ contains many edges that do
+not exist in $G_I$, which implies that clients experience more conflicts than
+the infrastructure can identify. Second, in this particular AP placement, we
+notice that $E_I$ is a \textit{proper subset} of $E_C$, which means our dataset
+not only reveals hidden conflicts, but also detects all conflicts that the APs
+already see.
 
-We then take a closer look at each node's degree in both conflict graphs.
-Results are shown in Figure~\ref{fig:conflict_degree}. The median node degree in
-$G_I$ is 7, which is not surprising given the dense AP deployment in this floor.
-In $G_C$, the min degree is 10 and the median degree is 13. In reality, however,
-not all the conflict edges exist all the time: while $G_I$ is stable, $G_C$
-may vary over time due to client mobility or association behavior. Therefore,
-such temporal fluctuations of $G_C$ must be captured to effectively assign
-channels without wasting temporal channel reuse opportunities.
+We then take a closer look at each node's degree in both conflict graphs.  The
+median node degree in $G_I$ is 7, which is not surprising given the dense AP
+deployment in this floor.  In $G_C$, the min degree is 10 and the median degree
+is 13. In reality, however, not all the conflict edges exist all the time: while
+$G_I$ is stable, $G_C$ may vary over time due to client mobility or association
+behavior. Therefore, such temporal fluctuations of $G_C$ must be captured to
+effectively assign channels without wasting temporal channel reuse
+opportunities.
 
 We seek ways to learn such temporal fluctuation patterns using our dataset.
 Specifically, we investigate \textit{hourly} patterns. For each edge in
@@ -193,10 +195,10 @@ per hour. Therefore, we extend the analysis to longer intervals. For a time
 window of $W (W>1)$ hours, we obtain the conflict graph by combining the
 conflict edges from each hour in the time window. We then compare the number of
 conflicts of \textit{AP-OPT} and \textit{CLIENT-OPT} scheme.
-Figure~\ref{fig:window} shows the results for $W=2, 5 \text{ and } 10$
+Figure~\ref{fig:window} shows the results for $W=2, 5, \text{ and } 10$
 respectively. As expected, both coloring schemes incur more conflicts than
 single hour case, since there are more edges in the graph to be colored.
-However, \textit{CLIENT-OPT} can still achieve much fewer conflicts than
+However, \textit{CLIENT-OPT} can achieve significantly fewer conflicts than
 \textit{AP-OPT}.
 
 \subsubsection{Campus Network Conflict Graph}

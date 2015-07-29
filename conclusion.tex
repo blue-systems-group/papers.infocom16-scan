@@ -37,8 +37,7 @@ recorded by the management software. Therefore, a complete view of the user's
 \wifi{} connection activity is already available on the infrastructure side.
 Even when the user's device is not connected to any AP, the infrastructure
 may still be able to detect the presence of the device by sniffing probe
-packets\footnote{iOS 8 introduces a MAC randomization feature in probe
-packets to preserve user's location privacy.}. Against this backdrop,
+packets. Against this backdrop,
 providing channel scan information does not represent an additional loss of
 privacy compared to what infrastructure networks can already monitor about
 their users.
@@ -90,22 +89,22 @@ information can either removed or anonymized.
 \subsection{Incentives}
 \label{subsec:incentive}
 
-We next discuss incentives for user to participate in data collection. First, smartphones already perform \wifi{}
-scans aggressively, thus the natural scan rate already provides a stream of
-network measurements with sufficient temporal granularity for monitoring
-purposes. By only passively harvesting the scan results, the overhead incurred
-in the process is kept low. And further steps can be taken to reduce the energy
-consumption (e.g., only upload data when charging) and possibly metered cellular
-data usage (e.g., only upload through \wifi{} networks).  Additionally, user
-privacy can be maintained using the anonymization techniques we discussed in
-Section~\ref{subsec:privacy}.
+We next discuss incentives for user to participate in data collection. First,
+smartphones already perform \wifi{} scans aggressively, thus the natural scan
+rate already provides a stream of network measurements with sufficient temporal
+granularity for monitoring purposes. By only passively harvesting the scan
+results, the overhead incurred in the process is kept low. And further steps can
+be taken to reduce the energy consumption (e.g., only upload data when charging)
+and possibly metered cellular data usage (e.g., only upload through \wifi{}
+networks).  Additionally, user privacy can be maintained using the anonymization
+techniques we discussed in Section~\ref{subsec:privacy}.
 
 Then we look into incentives that encourage users to share the data. Note that
 in enterprise networks, such data collection consent can be incorporated as part
 of the authentication process. For instance, users may be required to install
 the data collection app when connecting to the enterprise network, and the
 installation can then allow the user's other devices to connect to the network.
-For public \wifi{} service providers such as Boingo~\cite{boingo}, extra Quality
+For public \wifi{} service providers such as Boingo, extra Quality
 of Service (QoS) or price discounts can be offered to incentivize
 participation.
 

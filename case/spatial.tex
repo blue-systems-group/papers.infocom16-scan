@@ -16,7 +16,7 @@ period from 03/12/2015 to 04/25/2015.
 
 Figure~\ref{fig:load} shows the relative load distribution. We make several
 observations. First, as expected, the load of APs near public areas, such as AP
-3, 5, 4 and 12, are much higher than others. Second, interestingly, certain APs
+3, 4, 5, and 12, are much higher than others. Second, interestingly, certain APs
 near public areas, such as AP 7, are not as heavily loaded as other nearby APs.
 Moreover, loads are not evenly distributed among APs that are near the same
 public area, such as AP 3 and 5. Finally, we notice that the three load metrics
@@ -145,7 +145,7 @@ Figure~\ref{fig:davis_load_redist} shows the load redistribution graph for the
 incoming weights, indicating it is capable to provide backup connections
 in case of neighbor AP failures. On other hand, AP 10 and 13 have very small incoming
 weights, suggesting they may not be able to provide good signal for clients
-that need to be redirected when neighbor APs fail. Additionally, there is no loop edges for
+that need to be redirected when neighbor APs fail. Additionally, there are no loop edges for
 AP 10 and 13, meaning all the \wifi{} sessions they serve can be safely shifted to
 nearby neighbor APs when they are removed. Therefore, AP 10 and 13 can be
 repositioned to better places to increase their utilization. However, we must
@@ -155,8 +155,8 @@ investigations need to be conducted to reach a final decision.
 
 We also observe from Figure~\ref{fig:davis_load_redist} that, for those heavily
 loaded APs (e.g., AP 4 and 5), most of their loads can be shifted to nearby APs,
-although certain number of connections will be dropped. To quantify this, we define an
-AP's \textit{redundancy} as follows:%
+although certain number of connections will be dropped. To quantify this, we define the
+\textit{redundancy} of an AP as follows:%
 \begin{equation}
   \mathcal{R}(AP_i) = 1 - \frac{w_{AP_i \rightarrow AP_i}}{\sum_{j|AP_i \rightarrow
     AP_j \in E_R} w_{AP_i \rightarrow AP_j}}
