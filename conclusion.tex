@@ -12,6 +12,7 @@ To conclude, we address two practical issues in collecting smartphone
 scan data: (1) Will smartphone scan data compromise user privacy? (2) What
 are the incentives for user to contribute data? 
 
+\begin{comment}
 \begin{table*}[t!]
   \centering
   \begin{tabular}{cccccccc}
@@ -22,6 +23,7 @@ are the incentives for user to contribute data?
   \label{tab:privacy}
   \vspace*{\aftercaptiongap}
 \end{table*}
+\end{comment}
 
 \subsection{Privacy}
 \label{subsec:privacy}
@@ -36,20 +38,18 @@ including user's identity, device MAC address and association time, is usually
 recorded by the management software. Therefore, a complete view of the user's
 \wifi{} connection activity is already available on the infrastructure side.
 Even when the user's device is not connected to any AP, the infrastructure
-may still be able to detect the presence of the device by sniffing probe
+can still detect the presence of the device by sniffing probe
 packets. Against this backdrop,
 providing channel scan information does not represent an additional loss of
 privacy compared to what infrastructure networks can already monitor about
 their users.
 
 Next we discuss the minimum requirements in terms of scan data for each of the
-case studies in the previous sections. These requirements are summarized in
-Table~\ref{tab:privacy}.
-
+case studies in the previous sections.
 \begin{enumerate}
     %
   \item For all case studies, device identification information is not
-    utilized in any way; thus, it can be stripped off even before scan
+    utilized in any way; thus, it can be properly anonymized even before scan
     results data are uploaded.
     %
   \item Timestamp information is not needed either, as long as the multiple
@@ -64,7 +64,7 @@ Table~\ref{tab:privacy}.
     %
   \item Signal strength information is necessary in analyzing and predicting
     the device's association behavior in the spatial planning case study, yet
-    is optional in the other two studies. Additionally, this information can be
+    is optional in the other study. Additionally, this information can be
     replaced by an ordering of the APs by signal strength, eliminating the need
     for absolute RSSI values.
     %
@@ -84,7 +84,7 @@ Table~\ref{tab:privacy}.
 To summarize, for the purpose of constructing the conflict graph or performing
 spatial planning as in our case studies, only the BSSID information is necessary
 for the infrastructure to identify the APs. Other potentially sensitive
-information can either removed or anonymized.
+information can either be removed or anonymized.
 
 \subsection{Incentives}
 \label{subsec:incentive}
@@ -94,10 +94,10 @@ smartphones already perform \wifi{} scans aggressively, thus the natural scan
 rate already provides a stream of network measurements with sufficient temporal
 granularity for monitoring purposes. By only passively harvesting the scan
 results, the overhead incurred in the process is kept low. And further steps can
-be taken to reduce the energy consumption (e.g., only upload data when charging)
-and possibly metered cellular data usage (e.g., only upload through \wifi{}
-networks).  Additionally, user privacy can be maintained using the anonymization
-techniques we discussed in Section~\ref{subsec:privacy}.
+be taken to reduce the energy consumption of date
+uploading~\cite{liu2015appatp,zhang5etrain}.  Additionally, user privacy can be
+maintained using the anonymization techniques we discussed in
+Section~\ref{subsec:privacy}.
 
 Then we look into incentives that encourage users to share the data. Note that
 in enterprise networks, such data collection consent can be incorporated as part
@@ -143,7 +143,6 @@ incentive mechanisms can encourage measurement participation.
   only the relative ordering of the APs instead of the absolute RSSI values is
   utilized.
 
-\end{comment}
 
 \subsection{Future Works}
 
@@ -153,3 +152,4 @@ store and to network operators interested in using scans to better
 understand their enterprise \wifi{} networks. We also note that the concepts and
 techniques developed may also be extended to cellular networks to achieve
 similar benefits.
+\end{comment}
