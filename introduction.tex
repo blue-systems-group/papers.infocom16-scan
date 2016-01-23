@@ -9,12 +9,12 @@ roles in network monitoring, neither of these approaches can fully and
 continuously reflect actual network conditions experienced by the clients the
 network is intended to serve---particularly the mobile devices that generate
 most wireless traffic. Site surveys are snapshots that are neither spatially nor
-temporally representative, and AP-side data collection can only
+temporally representative, while AP-side data collection can only
 measure wireless conditions at AP fixed locations, not at the changing
 locations of mobile clients. As a result, multiple previous research studies
 have demonstrated the value of client-side measurements to improve network
-performance~\cite{mishra2005weighted,mishra2006client}, and the 802.11k
-amendment~\cite{80211k} provides a mechanism allowing APs to collect this
+performance~\cite{mishra2005weighted,mishra2006client}. Similarly the 802.11k
+amendment~\cite{80211k} provides a mechanism to allow APs to collect this
 information from clients to improve radio resource management.
 
 Given the established interest in and emerging support for client-side wireless
@@ -23,15 +23,16 @@ potentially valuable source of client-side information: the large number of
 channel scans generated continuously by mobile devices such as smartphones.
 These devices naturally perform frequent channel scans to cope with
 rapidly-fluctuating network environments caused by mobility. For example,
-Android smartphones scan every 15~s when unassociated~\cite{hanover2014cutting}
-to search for APs, and continue to scan every 60~s even when already associated in
+Android smartphones scan every 15 seconds when unassociated
+to search for APs~\cite{hanover2014cutting}, and continue to scan every 60 seconds even when already associated in
 order to identify better APs as wireless conditions change caused by client mobility,
 network interference, or other factors.
 
-Considered as network measurements, channel scans share all the typical benefits
+When considered as network measurements, channel scans share all the typical benefits
 of client-side measurements---such as capturing the real conditions experienced
 by end users, providing data that is impossible to gather using APs alone, and
-being simpler and more representative than site surveys. In addition, they have
+being simpler and more representative than site surveys. In addition, channel
+scans have
 several other unique benefits. First, note that clients spontaneously perform
 these channel scans in order to effectively use wireless networks. As a result,
 the client overhead required to collect them for monitoring purposes is limited
@@ -41,24 +42,24 @@ many cases channel scans remain useful even after being stripped of information
 such as timestamps or device identifiers that could threaten client privacy and
 potentially limit the willingness of users to share this information.
 
-All \wifi{} clients perform channel scans, but smartphones have several
+While all \wifi{} clients perform channel scans, smartphones have several
 advantages that make them uniquely suited to collecting and providing
 measurements for monitoring enterprise wireless networks. First, unlike laptops,
 smartphones are always powered on, thus scan continuously both during and
 between periods of interactive use, providing better temporal resolution than
 devices that are regularly powered down or put to sleep. Second, being highly portable, users
-are likely to carry smartphones with them most of the time, giving these devices
+are likely to carry smartphones most of the time, giving these devices
 the ability to observe more of the network than would be seen by stationary or
-less-portable devices and making their measurements more representative of all
+less-portable devices, making their measurements more representative of all
 locations where mobile users might utilize the wireless network. Finally,
 smartphone platforms already provide interfaces allowing apps (with appropriate
 permissions) to access channel scans, and app marketplaces provide an easy way
 to deploy the simple monitoring software required to collect them from billions of
-mobile devices. Compared to other mobile devices, smartphones make it (1) easy
-to collect (2) an enormous number of channel scans from (3) everywhere that
-users might use the wireless networks.
+mobile devices. Compared to other mobile devices, smartphones make it easy to
+collect an enormous number of channel scans from everywhere that users might use
+the wireless networks.
 
-\textbf{But are these measurements actually useful?} Can they contribute
+\textbf{But are these measurements actually useful?} Can channel scans contribute
 valuable insights in monitoring enterprise wireless networks that would
 otherwise be impossible to gain from existing infrastructure-based approaches?
 That is the question that we set out to answer in this paper. Our goal is to

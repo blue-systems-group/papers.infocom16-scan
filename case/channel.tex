@@ -42,16 +42,16 @@ client-perceived conflicts.
 \label{subsec:client_conflict}
 
 The conflict graph can be constructed with only infrastructure side measurements:
-each AP performs \wifi{} scan, and inserts an edge between itself and
-each of its neighbors. We refer to a graph constructed in this manner as
-\textit{infrastructure-perceived} conflict graph, or $G_I=(V, E_I)$, where $V$
+each AP performs a \wifi{} scan and inserts an edge between itself and
+each of its neighbors. We refer to a graph constructed in this manner as the
+\textit{Infrastructure-perceived} conflict graph, or $G_I=(V, E_I)$, where $V$
 is the set of APs, and $\langle AP_i, AP_j \rangle \in E_I$ if $AP_i$ can
 overhear $AP_j$'s beacon frame, or vice versa. 
 
 To construct $G_I$, we need the AP-side scan results. Due to the limitation
 aforementioned in Section~\ref{subsec:cit}, we are only able to construct $G_I$
 for the 14 APs in our department building, as shown in Figure~\ref{fig:floor}.
-With \ubapdetail{} dataset, for each $AP_i$, we add $\langle AP_j, AP_i \rangle$
+With the \ubapdetail{} dataset, for each $AP_i$, we add $\langle AP_j, AP_i \rangle$
 to $E_I$ if $AP_j$ shows up in $AP_i$'s scan results. Note that in \ubapdetail{}
 dataset, we did not find any asymmetric AP pairs, effectively making $G_I$ undirected.
 
@@ -158,7 +158,7 @@ To monitor the APs' operating channels, we placed three smartphones in locations
 marked as triangles in Figure~\ref{fig:floor}, and verified that the smartphones
 together can see all 14 APs in this floor. We configure the smartphones to
 perform a \wifi{} scan periodically. The experiment lasted for 6 days from Apr
-23 to Apr 28, 2015. We fusion the data from all devices and obtain each AP's
+23 to Apr 28, 2015. We fused the data from all devices and obtain each AP's
 channel history during the experiment period. In total, we detected no channel
 switch events in the 2.4~GHz band and 157 switch events in the 5~GHz band, which
 suggests the campus controllers only try to adapt channels in the 5~GHz band.
@@ -188,7 +188,8 @@ can be conflict free 50\% of the time, and no more than 3 conflict edges
 at any time.
 
 
-In practice, controllers may not be able to reassign channel as frequently as
+In practice, controllers may not be able to reassign channels as frequently as
+once
 per hour. Therefore, we extend the analysis to longer intervals. For a time
 window of $W (W>1)$ hours, we obtain the conflict graph by combining the
 conflict edges from each hour in the time window. We then compare the number of
