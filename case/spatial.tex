@@ -27,7 +27,7 @@ two can be biased by factors such as applications or user behaviors.
 
 From infrastructure logs, network operators can easily identify the hot spot APs
 that are more heavily loaded than their neighbors. Two actions can then be taken
-to deal with such load unbalance: \textit{redirection} and \textit{reposition}.
+to deal with such load imbalance: \textit{redirection} and \textit{reposition}.
 With \textit{redirection}, underutilized APs are left as is, so that
 when nearby hot spot APs are congested, clients can be redirected to them for
 load balancing. On the other hand, the underutilized APs can be
@@ -109,7 +109,7 @@ signal than nearby hot spot APs, thus should be considered as reposition
 candidates. However, even some of these candidate APs can not provide good
 signal for load offloading purposes, they may exclusively serve certain users,
 thus removing them will probably create coverage holes. We further look into
-this in next section.
+this in the next section.
 
 
 \subsubsection{Load Redistribution Graph}
@@ -143,7 +143,7 @@ towards $G_R$.
 Figure~\ref{fig:davis_load_redist} shows the load redistribution graph for the
 14 APs. Among the underutilized APs, AP 7 has medium 
 incoming weights, indicating it is capable to provide backup connections
-in case of neighbor AP failures. On other hand, AP 10 and 13 have very small incoming
+in case of neighbor AP failures. On the other hand, APs 10 and 13 have very small incoming
 weights, suggesting they may not be able to provide good signal for clients
 that need to be redirected when neighbor APs fail. Additionally, there are no loop edges for
 AP 10 and 13, meaning all the \wifi{} sessions they serve can be safely shifted to
