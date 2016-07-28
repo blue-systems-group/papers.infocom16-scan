@@ -1,6 +1,6 @@
 export PYTEX=$(shell pwd)/pytex/
 
-START = noxxxnote nodraft noblue
+START = noxxxnote nodraft blue
 END = missing
 CLASS = ./IEEEtran.cls
 

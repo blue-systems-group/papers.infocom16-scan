@@ -7,9 +7,7 @@ Using Smartphone Channel Scans}
 Koutsonikolas, and Geoffrey Challen}
 \def\aftercaptiongap{-4mm}
 
-
 \input{./include/start.tex}
-
 
 \title{\thetitle}
 \author{%
@@ -33,6 +31,21 @@ Koutsonikolas, and Geoffrey Challen}
 \begin{document}
 
 \maketitle
+
+\hypersetup{
+  pdfinfo={
+    Title={\thetitle},
+    Author={Jinghao Shi, Lei Meng, Aaron Striegel, Chunming Qiao, Dimitrios
+		Koutsonikolas, and Geoffrey Challen},
+  },
+}
+
+\ifdefined\isblue
+\begin{textblock}{1}(6.7,-0.2)
+\noindent\href{http://blue.cse.buffalo.edu}{\includegraphics[width=0.6in]{./figures/logos/blue.jpg}}
+\end{textblock}
+\vspace*{-0.2in}
+\fi
 
 \input{abstract.tex}
 \input{introduction.tex}
